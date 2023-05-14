@@ -67,15 +67,24 @@
                                     aimingRectOptions: {color: "#FF0000", weight: 2} // altera a cor do retângulo que representa a área visível do mapa principal
                                 }).addTo(mymap);
 
-                                var myIcon = L.AwesomeMarkers.icon({
-                                                        icon: 'cutlery',
-                                                        prefix: 'fa',
-                                                        markerColor: 'red'
-                                                    });
+                                                    var myIcon = L.AwesomeMarkers.icon({
+                                                                            icon: 'cutlery',
+                                                                            prefix: 'fa',
+                                                                            markerColor: 'red'
+                                                                        });
+                                                    var myIcon2 = L.AwesomeMarkers.icon({
+                                                            icon: 'beer', // ícone de taça de coquetel
+                                                            prefix: 'fa', // use o prefixo glyphicon
+                                                            markerColor: 'red' // cor do marcador
+                                                        });
 
                                 var portalMaracajau = L.marker([-5.4095, -35.313], {icon: myIcon}).addTo(mymap);
+                                var castelo = L.marker([-5.880324812245881, -35.17606543458511], {icon: myIcon2}).addTo(mymap);
 
-                                portalMaracajau.bindPopup("<b>Portal de Maracajaú Restaurante e Mergulhos</b><br>Restaurante localizado em Maracajaú que oferece mergulhos e outras atividades turísticas. <br><a href='https://www.portaldemaracajau.com.br/'>Saiba mais</a>").openPopup();
+                                //portalMaracajau.bindPopup("<b>Portal de Maracajaú Restaurante e Mergulhos</b><br>Restaurante localizado em Maracajaú que oferece mergulhos e outras atividades turísticas. <br><a href='https://www.portaldemaracajau.com.br/'>Saiba mais</a>").openPopup();
+                                portalMaracajau.bindPopup("<b>Portal de Maracajaú Restaurante e Mergulhos</b><br>Restaurante localizado em Maracajaú que oferece mergulhos e outras atividades turísticas. <br><a href='https://www.portaldemaracajau.com.br/'>Saiba mais</a><br><a href='https://www.tripadvisor.com/Restaurant_Review-g676521-d17774543-Reviews-Portal_de_Maracajau-Maxaranguape_State_of_Rio_Grande_do_Norte.html'><img src='https://www.edigitalagency.com.au/wp-content/uploads/tripadvisor-logo-png-icon-owl-black-png-transparent-858x551.png' width='20' height='20'></a>").openPopup();
+
+                                castelo .bindPopup("<b>Taverna Pub</b><br>Um bar e pub com música ao vivo, localizado em Ponta Negra, Natal - RN.<br><a href='https://www.tavernapub.com.br/'>Saiba mais</a>").openPopup();
 
 
 
