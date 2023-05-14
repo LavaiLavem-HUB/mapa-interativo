@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mapa Interativo</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css" integrity="sha512-efbAfGnrnjA+hLwOLu91W034fBGPsMwZMVCTwLUI2PDX/m7rOiuhYZ+D2mZ8rKcpC/I/7pdgoL8T4eYvMHNoQg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css" integrity="sha512-cUoWMYmv4H9TGP4hbm1mIjYo90WzIQFo/5jj+P5tQcDTf+iVR59RyIj/a9fRsBxzxt5Dnv/Ex7MzRIxcDwaOLw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <style>
+        #mapid {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <center><h1><img src="logo.jpg" width="150"></h1></center>
+    <center><h3> 🗺️ 🔍</h3></center>
+
+
+        <div id="mapid"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.min.js" integrity="sha512-8BqQ2RH4L4sQhV41ZB24fUc1nGcjmrTA6DILV/aTPYuUzo+wBdYdp0fvQ76Sxgf36p787CXF7TktWlcxu/zyOg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.min.js" integrity="sha512-WL3nAJlWFKoDShduxQRyY3wkBnQsINXdIfWIW48ZaPgYz1wYNnxIwFMMgigzSgjNBC2WWZ8Y8/sSyUU6abuF0g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.min.js" integrity="sha512-8BqQ2RH4L4sQhV41ZB24fUc1nGcjmrTA6DILV/aTPYuUzo+wBdYdp0fvQ76Sxgf36p787CXF7TktWlcxu/zyOg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script>
+        var mymap = L.map('mapid').setView([-6.2407, -35.0587], 11);
+
+       
+   
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+                maxZoom: 18
+            }).addTo(mymap);
+
+            // Obtém a localização atual do usuário
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var userLocation = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap);
+                    userLocation.bindPopup("<b>Sua Localização 📍</b>").openPopup();
+
+                    //Criando a linha entre a localização do usuário e Tibau do Sul
+                    var tibauDoSul = L.marker([-6.1918, -35.0867]).addTo(mymap);
+                    tibauDoSul.bindPopup("<b>Tibau do Sul</b><br>Local de belas praias e paisagens exuberantes. Oferecemos passeios de barco, stand up paddle, entre outras atividades turísticas 🏄🏊🛶🎣🏖️").openPopup();
+
+
+                    var barreiraDoInferno = L.marker([-6.1456, -35.1561]).addTo(mymap);
+                    barreiraDoInferno.bindPopup("<b>Barreira do Inferno</b><br>Centro de Lançamento de Foguetes da Força Aérea Brasileira. Visitas guiadas disponíveis 🚀🛰️👨‍🚀👩‍🚀.").openPopup();
+                    //var latlngs = [userLocation.getLatLng(), tibauDoSul.getLatLng()];
+                    //var line = L.polyline(latlngs, {color: 'green'}).addTo(mymap);
+
+                    var miniMap = new L.Control.MiniMap(L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+                                    maxZoom: 18
+                                }), {
+                                    toggleDisplay: true,
+                                    zoomLevelOffset: -4, // altere o valor para ajustar o zoom do minimapa
+                                    markerZoomAnimation: false, // desativa a animação do zoom quando clicado no boneco
+                                    autoToggleDisplay: true, // oculta automaticamente o minimapa quando arrastado pelo usuário
+                                    aimingRectOptions: {color: "#FF0000", weight: 2} // altera a cor do retângulo que representa a área visível do mapa principal
+                                }).addTo(mymap);
+
+                                var myIcon = L.AwesomeMarkers.icon({
+                                                        icon: 'cutlery',
+                                                        prefix: 'fa',
+                                                        markerColor: 'red'
+                                                    });
+
+                                var portalMaracajau = L.marker([-5.4095, -35.313], {icon: myIcon}).addTo(mymap);
+
+                                portalMaracajau.bindPopup("<b>Portal de Maracajaú Restaurante e Mergulhos</b><br>Restaurante localizado em Maracajaú que oferece mergulhos e outras atividades turísticas. <br><a href='https://www.portaldemaracajau.com.br/'>Saiba mais</a>").openPopup();
+
+
+
+
+
+
+
+                                        
+                                    
+
+
+
+
+
+
+                    var distance = line.getDistance();
+
+                    var latLngMidPoint = line.getCenter();
+                    var midPoint = L.marker(latLngMidPoint, {icon: L.divIcon({className: 'my-div-icon'})}).addTo(mymap);
+                    var midpointContent = "<b>Ponto Médio do Passeio</b><br>Distância até sua localização: " + (distance / 2).toFixed(2) + " km<br>Distância até Tibau do Sul: " + (distance / 2).toFixed(2) + " km";
+                    midPoint.bindPopup(midpointContent).openPopup();
+                    
+                });
+            } else {
+                alert("Geolocation não está disponível nesse navegador");
+            }
+    </script>
+</body>
+</html>
