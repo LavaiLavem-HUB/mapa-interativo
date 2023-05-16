@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turismo Inteligente</title>
+
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                }
+
+                body {
+                background: linear-gradient(135deg, white, white, white);
+                font-family: "Sans-Serif", cursive;
+                }
+
+                header {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                position: relative;
+                height: 100vh;
+                color: black;
+                z-index: -1;
+                text-align: center;
+                animation: fadeIn 1.5s ease-in-out;
+                }
+
+                section {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 1;
+                    height: 100vh;
+                    font-size: 5rem;
+                    background: #8b0000;
+                    color: white;
+                }
+
+                .section2{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 1;
+                    height: 100vh;
+                    font-size: 5rem;
+                    background: #0056a7;
+                    color: white;
+
+                }
+
+                    .animate-me {
+  animation: bounceIn 3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+          <div class="container">
+            <center><img src="logo.jpg" alt="" style="display: block; margin: 0 auto; max-width: 50%;"></center>
+            <h3>Tenha um experiência digital e inesquecível 🏖️☀️🌊🌎</h3>
+            <p>Com o uso de tecnologias inovadoras tornamos a sua vinda a natal algo único :D</p>
+          </div>
+        </header>
+  
+        <section>
+          <h3>Mapa Interativo<a href="https://mapa-interativo-sigma.vercel.app/chat_tourism.html" id="">🗺️📍</a></h3>
+        </section>
+
+        <section class="section2">
+            <h3>PassaeAR<a href="https://mapa-interativo-sigma.vercel.app/chat_tourism.html" id="">📄📱🔍</a></h3>
+            
+          </section>
+      </main>
+
+      <script>
+        window.addEventListener("scroll", function() {
+        const distance = window.scrollY;
+        document.querySelector("header").style.transform = `translateY(${distance *
+            1}px)`;
+        document.querySelector(
+            ".container"
+        ).style.transform = `translateY(${distance * 0.3}px)`;
+        setTimeout(() => {
+            document.querySelector("section h3").classList.add("animate-me");
+            //document.querySelector("section span").classList.add("animate-me");
+            document.querySelector(".section2 h3").classList.add("animate-me")
+        }, 400);
+        });
+        </script>
+    
+</body>
+</html>
