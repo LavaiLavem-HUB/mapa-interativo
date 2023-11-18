@@ -6,124 +6,151 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Turismo Inteligente</title>
 
+    <!-- Adicione o link para o Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
     <style>
         @import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                }
 
-                body {
-                background: linear-gradient(135deg, white, white, white);
-                font-family: "Sans-Serif", cursive;
-                }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-                header {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                position: relative;
-                height: 100vh;
-                color: black;
-                z-index: -1;
-                text-align: center;
-                animation: fadeIn 1.5s ease-in-out;
-                }
+        body {
+            background: linear-gradient(135deg, white, white, white);
+            font-family: "Sans-Serif", cursive;
+        }
 
-                section {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    z-index: 1;
-                    height: 100vh;
-                    font-size: 5rem;
-                    background: #8b0000;
-                    color: white;
-                }
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            height: 100vh;
+            color: black;
+            z-index: -1;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
 
-                .section2{
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    z-index: 1;
-                    height: 100vh;
-                    font-size: 5rem;
-                    background: #0056a7;
-                    color: white;
+        section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            height: 100vh;
+            font-size: 5rem;
+            background: #8b0000;
+            color: white;
+        }
 
-                }
+        .section2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            height: 100vh;
+            font-size: 5rem;
+            background: #0056a7;
+            color: white;
+        }
 
-                    .animate-me {
-  animation: bounceIn 3s ease-in-out;
-}
+        .animate-me {
+            animation: bounceIn 3s ease-in-out;
+        }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
 
-@keyframes bounceIn {
-  0% {
-    transform: scale(0.1);
-    opacity: 0;
-  }
-  60% {
-    transform: scale(1.2);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.1);
+                opacity: 0;
+            }
+            60% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
     </style>
 </head>
 <body>
-  <main>
-    <header>
-      <div class="container">
-        <center><img src="logo2.png" alt="" style="display: block; margin: 0 auto; max-width: 50%;"></center>
-        <h3>Tenha uma experiência digital e inesquecível 🏖️☀️🌊🌎</h3>
-        <p>Com o uso de tecnologias inovadoras, tornamos a sua visita a Natal algo único :D</p>
-        <div style="text-align: center;">
-        </div>
-      </div>
-    </header>
-  
-    <section>
-      <h3>Mapa Interativo<a href="https://mapa-interativo-sigma.vercel.app/map.html" id="">🗺️📍</a></h3>
-    </section>
-  
-    <section class="section2">
-      <h3>PasseAR<a href="https://mapa-interativo-sigma.vercel.app/chat_tourism.html" id="">📄📱🔍</a></h3>
-      <div style="text-align: center;">
-        <img src="qrcode1.png" alt="QR Code" style="max-width: 50%; margin-top: 10px;">
-      </div>
-    </section>
-  </main>
 
-      <script>
-        window.addEventListener("scroll", function() {
-        const distance = window.scrollY;
-        document.querySelector("header").style.transform = `translateY(${distance *
-            1}px)`;
-        document.querySelector(
-            ".container"
-        ).style.transform = `translateY(${distance * 0.3}px)`;
-        setTimeout(() => {
-            document.querySelector("section h3").classList.add("animate-me");
-            //document.querySelector("section span").classList.add("animate-me");
-            document.querySelector(".section2 h3").classList.add("animate-me")
-        }, 400);
+    <!-- Adicione o menu Bootstrap de forma mais seletiva -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Turismo Inteligente</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Mapa Interativo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">PasseAR</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <header>
+            <div class="container">
+                <center><img src="logo2.png" alt="" style="display: block; margin: 0 auto; max-width: 50%;"></center>
+                <h3>Tenha uma experiência digital e inesquecível 🏖️☀️🌊🌎</h3>
+                <p>Com o uso de tecnologias inovadoras, tornamos a sua visita a Natal algo único :D</p>
+                <div style="text-align: center;"></div>
+            </div>
+        </header>
+
+        <section>
+            <h3>Mapa Interativo<a href="https://mapa-interativo-sigma.vercel.app/map.html" id="">🗺️📍</a></h3>
+        </section>
+
+        <section class="section2">
+            <h3>PasseAR<a href="https://mapa-interativo-sigma.vercel.app/chat_tourism.html" id="">📄📱🔍</a></h3>
+            <div style="text-align: center;">
+                <img src="qrcode1.png" alt="QR Code" style="max-width: 50%; margin-top: 10px;">
+            </div>
+        </section>
+    </main>
+
+    <!-- Adicione o link para o Bootstrap JS e jQuery no final do corpo do HTML -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        window.addEventListener("scroll", function () {
+            const distance = window.scrollY;
+            document.querySelector("header").style.transform = `translateY(${distance * 1}px)`;
+            document.querySelector(
+                ".container"
+            ).style.transform = `translateY(${distance * 0.3}px)`;
+            setTimeout(() => {
+                document.querySelector("section h3").classList.add("animate-me");
+                document.querySelector(".section2 h3").classList.add("animate-me");
+            }, 400);
         });
-        </script>
-    
+    </script>
+
 </body>
 </html>
