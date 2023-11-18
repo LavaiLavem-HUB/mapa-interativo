@@ -12,17 +12,29 @@
     <style>
         
         #mapid {
-            height: 50vh; /* Utilizando altura relativa à viewport */
+            height: 50vh;
             width: 100%;
         }
 
-        h1, h3 {
+        h1,
+        h3 {
             margin-top: 10px;
             margin-bottom: 10px;
         }
 
         .leaflet-popup-content {
-            max-width: 300px; /* Limitando a largura do conteúdo do popup */
+            max-width: 300px;
+        }
+
+        /* Ajustes para balões de informação em dispositivos móveis */
+        @media only screen and (max-width: 768px) {
+            .leaflet-popup-content {
+                max-width: 100%; /* Ocupa a largura total do dispositivo */
+            }
+
+            .leaflet-popup-content-wrapper {
+                width: auto;
+            }
         }
    
     </style>
