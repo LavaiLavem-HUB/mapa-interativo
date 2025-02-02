@@ -1,162 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LavaiLavem Turismo</title>
-
-    <!-- Adicione o link para o Bootstrap CSS -->
+    <title>Mapa Interativo | Lavailavem Turismo</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        @import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            background: linear-gradient(135deg, white, white, white);
-            font-family: "Sans-Serif", cursive;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
         }
-
-        header {
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+            font-weight: 600;
+        }
+        .hero {
+            height: 70vh;
             display: flex;
-            justify-content: center;
-            align-items: center;
             flex-direction: column;
-            position: relative;
-            height: 100vh;
-            color: black;
-            z-index: -1;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1;
-            height: 100vh;
-            font-size: 5rem;
-            background: #8b0000;
+            background: url('https://source.unsplash.com/1600x900/?beach,tourism') no-repeat center center;
+            background-size: cover;
             color: white;
+            padding: 20px;
         }
-
-        .section2 {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1;
-            height: 100vh;
-            font-size: 5rem;
-            background: #0056a7;
-            color: white;
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
         }
-
-        .animate-me {
-            animation: bounceIn 3s ease-in-out;
+        .btn-primary {
+            background-color: #ff7b00;
+            border-color: #ff7b00;
         }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+        .btn-primary:hover {
+            background-color: #e66a00;
+            border-color: #e66a00;
         }
-
-        @keyframes bounceIn {
-            0% {
-                transform: scale(0.1);
-                opacity: 0;
-            }
-            60% {
-                transform: scale(1.2);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1);
-            }
+        .features {
+            padding: 60px 0;
+            text-align: center;
+        }
+        .feature-box {
+            padding: 20px;
         }
     </style>
 </head>
 <body>
-
-    <!-- Adicione o menu Bootstrap de forma mais seletiva -->
-    <nav class="navbar navbar-expand-lg navbar-white bg-white fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">LavaiLavem Turismo</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="#">Lavailavem Turismo</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Ínicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Mapa Interativo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Loja</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#mapa">Mapa Interativo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-
-    <main>
-        <header>
-            <div class="container">
-                <center><img src="logo2.png" alt="" style="display: block; margin: 0 auto; max-width: 50%;"></center>
-                <h3>Tenha uma experiência digital e inesquecível 🏖️☀️🌊🌎</h3>
-                <p>Com o uso de tecnologias inovadoras, tornamos a sua visita a Natal algo único :D</p>
-                <div style="text-align: center;"></div>
+    
+    <header class="hero">
+        <h1>Explore Natal com o Mapa Interativo</h1>
+        <p>Descubra os melhores pontos turísticos e planeje sua aventura com facilidade.</p>
+        <a href="https://mapa-interativo-sigma.vercel.app/map.html" class="btn btn-primary btn-lg">Acessar Mapa 🗺️</a>
+    </header>
+    
+    <section class="container features">
+        <div class="row">
+            <div class="col-md-4 feature-box">
+                <h3>📍 Localização Precisa</h3>
+                <p>Veja sua posição e os melhores pontos turísticos de Natal.</p>
             </div>
-        </header>
-
-        <section>
-            <h3>Mapa Interativo<a href="https://mapa-interativo-sigma.vercel.app/map.html" id="">🗺️📍</a></h3>
-        </section>
-
-        <!--PasseaAR ainda está em fase de desenvolvimento
-
-          <section class="section2">
-            <h3>PasseAR<a href="https://mapa-interativo-sigma.vercel.app/chat_tourism.html" id="">📄📱🔍</a></h3>
-            <div style="text-align: center;">
-                <img src="qrcode1.png" alt="QR Code" style="max-width: 50%; margin-top: 10px;">
+            <div class="col-md-4 feature-box">
+                <h3>🌍 Experiência Imersiva</h3>
+                <p>Informações detalhadas sobre cada atração e passeios disponíveis.</p>
             </div>
-        </section>
-        
-        -->
-
-        
-    </main>
-
-    <!-- Adicione o link para o Bootstrap JS e jQuery no final do corpo do HTML -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+            <div class="col-md-4 feature-box">
+                <h3>🚀 Fácil de Usar</h3>
+                <p>Interface intuitiva para você planejar seu passeio sem complicações.</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="text-center p-4 bg-light">
+        <p>&copy; 2025 Lavailavem Turismo - Todos os direitos reservados.</p>
+    </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <script>
-        window.addEventListener("scroll", function () {
-            const distance = window.scrollY;
-            document.querySelector("header").style.transform = `translateY(${distance * 1}px)`;
-            document.querySelector(
-                ".container"
-            ).style.transform = `translateY(${distance * 0.3}px)`;
-            setTimeout(() => {
-                document.querySelector("section h3").classList.add("animate-me");
-                document.querySelector(".section2 h3").classList.add("animate-me");
-            }, 400);
-        });
-    </script>
-
 </body>
 </html>
