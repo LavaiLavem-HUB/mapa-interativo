@@ -57,188 +57,71 @@
     <script type="text/javascript" src="./MovingMarker.js"></script>
 
     <script>
-        var mymap = L.map('mapid').setView([-6.2407, -35.0587], 11);
+       var mymap = L.map('mapid').setView([-6.2407, -35.0587], 11);
 
-       
-   
+// Adicionando o mapa base
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+    maxZoom: 18
+}).addTo(mymap);
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-                maxZoom: 18
-            }).addTo(mymap);
+// Ícones personalizados
+var icons = {
+    turismo: L.AwesomeMarkers.icon({ icon: 'camera', prefix: 'fa', markerColor: 'blue' }),
+    restaurante: L.AwesomeMarkers.icon({ icon: 'cutlery', prefix: 'fa', markerColor: 'red' }),
+    bar: L.AwesomeMarkers.icon({ icon: 'beer', prefix: 'fa', markerColor: 'orange' }),
+    historico: L.AwesomeMarkers.icon({ icon: 'university', prefix: 'fa', markerColor: 'green' }),
+    natureza: L.AwesomeMarkers.icon({ icon: 'tree', prefix: 'fa', markerColor: 'darkgreen' })
+};
 
-            // Obtém a localização atual do usuário
-            if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var icon_bus =  L.AwesomeMarkers.icon({
-                                                                            icon: 'bus',
-                                                                            prefix: 'fa',
-                                                                            markerColor: 'red'
-                                                                        });
+// Criando grupos de camadas
+var turismoGroup = L.layerGroup([
+    L.marker([-6.1918, -35.0867], {icon: icons.turismo}).bindPopup("<b>Tibau do Sul</b><br>Belezas naturais e passeios."),
+    L.marker([-5.7412, -35.1995], {icon: icons.historico}).bindPopup("<b>Fortaleza dos Reis Magos</b><br>Construção histórica de 1598."),
+    L.marker([-5.7289, -35.1809], {icon: icons.turismo}).bindPopup("<b>Aquário Natal</b><br>O maior aquário do Nordeste.")
+]);
 
-                                                                        
-                    var userLocation = L.marker([position.coords.latitude, position.coords.longitude], {icon:icon_bus}).addTo(mymap);
-                    userLocation.bindPopup("<b>Sua Localização 📍</b>").openPopup();
+var restaurantesGroup = L.layerGroup([
+    L.marker([-5.4095, -35.313], {icon: icons.restaurante}).bindPopup("<b>Portal de Maracajaú</b><br>Restaurante e mergulhos."),
+    L.marker([-5.8822, -35.1698], {icon: icons.restaurante}).bindPopup("<b>Praia de Ponta Negra</b><br>Opções de bares e restaurantes.")
+]);
 
+var baresGroup = L.layerGroup([
+    L.marker([-5.8803, -35.1761], {icon: icons.bar}).bindPopup("<b>Taverna Pub</b><br>Música ao vivo em Ponta Negra.")
+]);
 
-           
+var naturezaGroup = L.layerGroup([
+    L.marker([-5.7945, -35.1903], {icon: icons.natureza}).bindPopup("<b>Parque das Dunas</b><br>Trilhas e natureza."),
+    L.marker([-6.1553, -35.1287], {icon: icons.natureza}).bindPopup("<b>Maior Cajueiro do Mundo</b><br>O maior cajueiro do planeta.")
+]);
 
-                    //Criando a linha entre a localização do usuário e Tibau do Sul
-                    var tibauDoSul = L.marker([-6.1918, -35.0867]).addTo(mymap);
-                    tibauDoSul.bindPopup("<b>Tibau do Sul</b><br>Local de belas praias e paisagens exuberantes. Oferecemos passeios de barco, stand up paddle, entre outras atividades turísticas 🏄🏊🛶🎣🏖️").openPopup();
+// Adicionando as camadas ao mapa
+var categorias = {
+    "Pontos Turísticos": turismoGroup,
+    "Restaurantes": restaurantesGroup,
+    "Bares": baresGroup,
+    "Natureza e Lazer": naturezaGroup
+};
 
+// Controle de camadas
+L.control.layers(null, categorias, { collapsed: false }).addTo(mymap);
 
-                    var barreiraDoInferno = L.marker([-6.1456, -35.1561]).addTo(mymap);
-                    barreiraDoInferno.bindPopup("<b>Barreira do Inferno</b><br>Centro de Lançamento de Foguetes da Força Aérea Brasileira. Visitas guiadas disponíveis 🚀🛰️👨‍🚀👩‍🚀.").openPopup();
-                    //var latlngs = [userLocation.getLatLng(), tibauDoSul.getLatLng()];
-                    //var line = L.polyline(latlngs, {color: 'green'}).addTo(mymap);
+// Adicionando localização do usuário
+if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var userIcon = L.AwesomeMarkers.icon({
+            icon: 'map-marker',
+            prefix: 'fa',
+            markerColor: 'blue'
+        });
 
-                    var miniMap = new L.Control.MiniMap(L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-                                    maxZoom: 18
-                                }), {
-                                    toggleDisplay: true,
-                                    zoomLevelOffset: -4, // altere o valor para ajustar o zoom do minimapa
-                                    markerZoomAnimation: false, // desativa a animação do zoom quando clicado no boneco
-                                    autoToggleDisplay: true, // oculta automaticamente o minimapa quando arrastado pelo usuário
-                                    aimingRectOptions: {color: "#FF0000", weight: 2} // altera a cor do retângulo que representa a área visível do mapa principal
-                                }).addTo(mymap);
+        var userLocation = L.marker([position.coords.latitude, position.coords.longitude], {icon: userIcon}).addTo(mymap);
+        userLocation.bindPopup("<b>Sua Localização 📍</b>").openPopup();
+    });
+} else {
+    alert("Geolocalização não disponível.");
+}
 
-                                                    var myIcon = L.AwesomeMarkers.icon({
-                                                                            icon: 'cutlery',
-                                                                            prefix: 'fa',
-                                                                            markerColor: 'red'
-                                                                        });
-                                                    var myIcon2 = L.AwesomeMarkers.icon({
-                                                            icon: 'beer', // ícone de taça de coquetel
-                                                            prefix: 'fa', // use o prefixo glyphicon
-                                                            markerColor: 'red' // cor do marcador
-                                                        });
-
-                                                   
-
-                                var portalMaracajau = L.marker([-5.4095, -35.313], {icon: myIcon}).addTo(mymap);
-                                var castelo = L.marker([-5.880324812245881, -35.17606543458511], {icon: myIcon2}).addTo(mymap);
-
-                                //portalMaracajau.bindPopup("<b>Portal de Maracajaú Restaurante e Mergulhos</b><br>Restaurante localizado em Maracajaú que oferece mergulhos e outras atividades turísticas. <br><a href='https://www.portaldemaracajau.com.br/'>Saiba mais</a>").openPopup();
-                                portalMaracajau.bindPopup("<b>Portal de Maracajaú Restaurante e Mergulhos</b><br>Restaurante localizado em Maracajaú que oferece mergulhos e outras atividades turísticas. <br><a href='https://www.portaldemaracajau.com.br/'>Saiba mais</a><br><a href='https://www.tripadvisor.com/Restaurant_Review-g676521-d17774543-Reviews-Portal_de_Maracajau-Maxaranguape_State_of_Rio_Grande_do_Norte.html'><img src='https://www.edigitalagency.com.au/wp-content/uploads/tripadvisor-logo-png-icon-owl-black-png-transparent-858x551.png' width='20' height='20'></a>").openPopup();
-
-                                castelo .bindPopup("<b>Taverna Pub</b><br>Um bar e pub com música ao vivo, localizado em Ponta Negra, Natal - RN.<br><a href='https://www.tavernapub.com.br/'>Saiba mais</a>").openPopup();
-
-                                // Praia de Ponta Negra
-var praiaPontaNegra = L.marker([-5.8822, -35.1698], {icon: myIcon}).addTo(mymap);
-praiaPontaNegra.bindPopup("<b>Praia de Ponta Negra</b><br>Uma das praias mais famosas de Natal, conhecida pelo Morro do Careca, uma duna de 120 metros de altura. A região oferece diversas opções de bares, restaurantes e vida noturna. <br><a href='https://lugaresautenticos.com.br/praia-de-ponta-negra-em-natal-rn/'>Saiba mais</a>").openPopup();
-
-// Fortaleza dos Reis Magos
-var fortalezaReisMagos = L.marker([-5.7412, -35.1995], {icon: myIcon}).addTo(mymap);
-fortalezaReisMagos.bindPopup("<b>Fortaleza dos Reis Magos</b><br>Construída em 1598, esta fortaleza histórica em forma de estrela foi o marco inicial da cidade de Natal. Oferece visitas guiadas e uma vista panorâmica do mar. <br><a href='https://www.viagensecaminhos.com/natal-rn/'>Saiba mais</a>").openPopup();
-
-// Parque das Dunas
-var parqueDunas = L.marker([-5.7945, -35.1903], {icon: myIcon}).addTo(mymap);
-parqueDunas.bindPopup("<b>Parque das Dunas</b><br>O segundo maior parque urbano do Brasil, com 1.172 hectares de mata atlântica preservada, trilhas ecológicas e áreas para piqueniques. <br><a href='https://en.wikipedia.org/wiki/Natal%2C_Rio_Grande_do_Norte'>Saiba mais</a>").openPopup();
-
-// Maior Cajueiro do Mundo
-var maiorCajueiro = L.marker([-6.1553, -35.1287], {icon: myIcon}).addTo(mymap);
-maiorCajueiro.bindPopup("<b>Maior Cajueiro do Mundo</b><br>Localizado em Pirangi do Norte, este cajueiro cobre uma área de aproximadamente 8.500 m², sendo considerado o maior do mundo. <br><a href='https://en.wikipedia.org/wiki/Natal%2C_Rio_Grande_do_Norte'>Saiba mais</a>").openPopup();
-
-// Aquário Natal
-var aquarioNatal = L.marker([-5.7289, -35.1809], {icon: myIcon}).addTo(mymap);
-aquarioNatal.bindPopup("<b>Aquário Natal</b><br>O maior aquário do Nordeste, abriga cerca de 60 espécies marinhas, incluindo tubarões, pinguins e cavalos-marinhos. <br><a href='https://www.viagensecaminhos.com/natal-rn/'>Saiba mais</a>").openPopup();
-
-                            var animatedMarker = L.animatedMarker([[position.coords.latitude, position.coords.longitude], [-6.1918, -35.0867]], {
-                                                icon: icon_bus,
-                                                autoStart: false,
-                                                distance: 100000, // Defina a distância total do movimento em metros
-                                                interval: 2000, // Defina o intervalo de tempo entre as atualizações de posição em milissegundos
-                            });
-
-                                                //mymap.addLayer(animatedMarker);
-                                                //animatedMarker.start();
-
-                            var polyline = L.polyline([userLocation.getLatLng(), tibauDoSul.getLatLng()], { color: 'green' }).addTo(mymap);
-
-                            // Criando o marcador animado usando o plugin Leaflet.AnimatedMarker
-                          
-
-                            // Adicionando o marcador animado ao mapa
-                            mymap.addLayer(animatedMarker);
-
-                            // Iniciando a animação do marcador animado quando a linha estiver pronta
-                            polyline.on('add', function() {
-                                       animatedMarker.start();
-                            });
-
-                            // Iniciando a animação do marcador do ponto de partida quando a animação do marcador animado começar
-                            animatedMarker.on('start', function() {
-                                    markerPartida.animate({
-                                        duration: 18000,
-                                        autoStart: true,
-                                        distance: polyline.getDistance()
-                                    });
-                            });
-
-                            // Iniciando a animação da linha (snake) quando a animação do marcador animado começar
-                            animatedMarker.on('start', function() {
-                                     polyline.snakeIn();
-                            });
-
-
-
-
-                            // Criando a polilinha entre a localização do usuário e o destino
-                            var polyline = L.polyline([userLocation.getLatLng(), tibauDoSul.getLatLng()], { color: 'green' }).addTo(mymap);
-
-                            // Criando o marcador do ponto de partida
-                            //var markerPartida = L.marker(userLocation.getLatLng(), { icon: icon_bus }).addTo(mymap);
-
-                            // Criando o marcador do destino
-                            //var markerDestino = L.marker(tibauDoSul.getLatLng()).addTo(mymap);
-
-                            // Criando o marcador animado usando o plugin Leaflet.MovingMarker
-                            var animatedMarker = L.Marker.movingMarker(polyline.getLatLngs(), [18000], {
-                            icon: icon_bus,
-                            autostart: true,
-                            loop: false,
-                            onEnd: function() {
-                                console.log('A animação terminou!');
-                                animatedMarker.bindPopup("")
-                            }
-                            });
-
-                            // Adicionando o marcador animado ao mapa
-                            mymap.addLayer(animatedMarker);
-
-                            // Iniciando a animação do marcador animado
-                            animatedMarker.start();
-
-                            
-
-
-
-                                        
-                                    
-
-
-
-
-
-
-                    var distance = line.getDistance();
-
-                    var latLngMidPoint = line.getCenter();
-                    var midPoint = L.marker(latLngMidPoint, {icon: L.divIcon({className: 'my-div-icon'})}).addTo(mymap);
-                    var midpointContent = "<b>Ponto Médio do Passeio</b><br>Distância até sua localização: " + (distance / 2).toFixed(2) + " km<br>Distância até Tibau do Sul: " + (distance / 2).toFixed(2) + " km";
-                    midPoint.bindPopup(midpointContent).openPopup();
-
-                    var line = L.polyline([[position.coords.latitude, position.coords.longitude],[-5.4095, -35.313]]),
-                    animatedMarker = L.animatedMarker(line.getLatLngs());
-
-                    map.addLayer(animatedMarker);
-                    
-                });
-            } else {
-                alert("Geolocation não está disponível nesse navegador");
-            }
     </script>
 </body>
 </html>
