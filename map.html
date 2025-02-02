@@ -125,6 +125,26 @@
 
                                 castelo .bindPopup("<b>Taverna Pub</b><br>Um bar e pub com música ao vivo, localizado em Ponta Negra, Natal - RN.<br><a href='https://www.tavernapub.com.br/'>Saiba mais</a>").openPopup();
 
+                                // Praia de Ponta Negra
+var praiaPontaNegra = L.marker([-5.8822, -35.1698], {icon: myIcon}).addTo(mymap);
+praiaPontaNegra.bindPopup("<b>Praia de Ponta Negra</b><br>Uma das praias mais famosas de Natal, conhecida pelo Morro do Careca, uma duna de 120 metros de altura. A região oferece diversas opções de bares, restaurantes e vida noturna. <br><a href='https://lugaresautenticos.com.br/praia-de-ponta-negra-em-natal-rn/'>Saiba mais</a>").openPopup();
+
+// Fortaleza dos Reis Magos
+var fortalezaReisMagos = L.marker([-5.7412, -35.1995], {icon: myIcon}).addTo(mymap);
+fortalezaReisMagos.bindPopup("<b>Fortaleza dos Reis Magos</b><br>Construída em 1598, esta fortaleza histórica em forma de estrela foi o marco inicial da cidade de Natal. Oferece visitas guiadas e uma vista panorâmica do mar. <br><a href='https://www.viagensecaminhos.com/natal-rn/'>Saiba mais</a>").openPopup();
+
+// Parque das Dunas
+var parqueDunas = L.marker([-5.7945, -35.1903], {icon: myIcon}).addTo(mymap);
+parqueDunas.bindPopup("<b>Parque das Dunas</b><br>O segundo maior parque urbano do Brasil, com 1.172 hectares de mata atlântica preservada, trilhas ecológicas e áreas para piqueniques. <br><a href='https://en.wikipedia.org/wiki/Natal%2C_Rio_Grande_do_Norte'>Saiba mais</a>").openPopup();
+
+// Maior Cajueiro do Mundo
+var maiorCajueiro = L.marker([-6.1553, -35.1287], {icon: myIcon}).addTo(mymap);
+maiorCajueiro.bindPopup("<b>Maior Cajueiro do Mundo</b><br>Localizado em Pirangi do Norte, este cajueiro cobre uma área de aproximadamente 8.500 m², sendo considerado o maior do mundo. <br><a href='https://en.wikipedia.org/wiki/Natal%2C_Rio_Grande_do_Norte'>Saiba mais</a>").openPopup();
+
+// Aquário Natal
+var aquarioNatal = L.marker([-5.7289, -35.1809], {icon: myIcon}).addTo(mymap);
+aquarioNatal.bindPopup("<b>Aquário Natal</b><br>O maior aquário do Nordeste, abriga cerca de 60 espécies marinhas, incluindo tubarões, pinguins e cavalos-marinhos. <br><a href='https://www.viagensecaminhos.com/natal-rn/'>Saiba mais</a>").openPopup();
+
                             var animatedMarker = L.animatedMarker([[position.coords.latitude, position.coords.longitude], [-6.1918, -35.0867]], {
                                                 icon: icon_bus,
                                                 autoStart: false,
