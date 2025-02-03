@@ -57,7 +57,7 @@
     <script type="text/javascript" src="./MovingMarker.js"></script>
 
     <script>
-       var mymap = L.map('mapid').setView([-6.2407, -35.0587], 11);
+      var mymap = L.map('mapid').setView([-6.2407, -35.0587], 11);
 
 // Adicionando o mapa base
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -76,23 +76,30 @@ var icons = {
 
 // Criando grupos de camadas
 var turismoGroup = L.layerGroup([
-    L.marker([-6.1918, -35.0867], {icon: icons.turismo}).bindPopup("<b>Tibau do Sul</b><br>Belezas naturais e passeios."),
-    L.marker([-5.7412, -35.1995], {icon: icons.historico}).bindPopup("<b>Fortaleza dos Reis Magos</b><br>Construção histórica de 1598."),
-    L.marker([-5.7289, -35.1809], {icon: icons.turismo}).bindPopup("<b>Aquário Natal</b><br>O maior aquário do Nordeste.")
+    L.marker([-6.1918, -35.0867], {icon: icons.turismo}).bindPopup("<b>Tibau do Sul</b><br>Belezas naturais e passeios.<br><a href='https://turismo.tibaudosul.com.br' target='_blank'>Saiba mais</a>"),
+    L.marker([-5.7412, -35.1995], {icon: icons.historico}).bindPopup("<b>Fortaleza dos Reis Magos</b><br>Construção histórica de 1598.<br><a href='https://fortalezanatal.com.br' target='_blank'>Saiba mais</a>"),
+    L.marker([-5.7289, -35.1809], {icon: icons.turismo}).bindPopup("<b>Aquário Natal</b><br>O maior aquário do Nordeste.<br><a href='https://aquarionatal.com.br' target='_blank'>Saiba mais</a>"),
+    L.marker([-5.7938, -35.1914], {icon: icons.turismo}).bindPopup("<b>Centro de Turismo de Natal</b><br>Local de artesanato e cultura.<br><a href='https://centroturismonatal.com.br' target='_blank'>Saiba mais</a>")
 ]);
 
 var restaurantesGroup = L.layerGroup([
-    L.marker([-5.4095, -35.313], {icon: icons.restaurante}).bindPopup("<b>Portal de Maracajaú</b><br>Restaurante e mergulhos."),
-    L.marker([-5.8822, -35.1698], {icon: icons.restaurante}).bindPopup("<b>Praia de Ponta Negra</b><br>Opções de bares e restaurantes.")
+    L.marker([-5.4095, -35.313], {icon: icons.restaurante}).bindPopup("<b>Portal de Maracajaú</b><br>Restaurante e mergulhos.<br><a href='https://portaldemaracajau.com.br' target='_blank'>Saiba mais</a>"),
+    L.marker([-5.8822, -35.1698], {icon: icons.restaurante}).bindPopup("<b>Praia de Ponta Negra</b><br>Opções de bares e restaurantes.<br><a href='https://ponta-negra.com.br' target='_blank'>Saiba mais</a>"),
+    L.marker([-5.8073, -35.2065], {icon: icons.restaurante}).bindPopup("<b>Camarões Restaurante</b><br>Famoso restaurante de frutos do mar.<br><a href='https://camaroes.com.br' target='_blank'>Saiba mais</a>"),
+    L.marker([-5.7856, -35.2054], {icon: icons.restaurante}).bindPopup("<b>Mangai</b><br>Restaurante de comida típica nordestina.<br><a href='https://mangai.com.br' target='_blank'>Saiba mais</a>")
 ]);
 
 var baresGroup = L.layerGroup([
-    L.marker([-5.8803, -35.1761], {icon: icons.bar}).bindPopup("<b>Taverna Pub</b><br>Música ao vivo em Ponta Negra.")
+    L.marker([-5.8803, -35.1761], {icon: icons.bar}).bindPopup("<b>Taverna Pub</b><br>Música ao vivo em Ponta Negra.<br><a href='https://tavernapub.com.br' target='_blank'>Saiba mais</a>"),
+    L.marker([-5.7941, -35.2093], {icon: icons.bar}).bindPopup("<b>Whiskritório Pub</b><br>Casa de shows e bar temático.<br><a href='https://whiskritorio.com.br' target='_blank'>Saiba mais</a>"),
+    L.marker([-5.7832, -35.2078], {icon: icons.bar}).bindPopup("<b>Rastapé Casa de Forró</b><br>Forró tradicional com bandas ao vivo.<br><a href='https://rastape.com.br' target='_blank'>Saiba mais</a>")
 ]);
 
 var naturezaGroup = L.layerGroup([
-    L.marker([-5.7945, -35.1903], {icon: icons.natureza}).bindPopup("<b>Parque das Dunas</b><br>Trilhas e natureza."),
-    L.marker([-6.1553, -35.1287], {icon: icons.natureza}).bindPopup("<b>Maior Cajueiro do Mundo</b><br>O maior cajueiro do planeta.")
+    L.marker([-5.7945, -35.1903], {icon: icons.natureza}).bindPopup("<b>Parque das Dunas</b><br>Trilhas e natureza.<br><a href='https://parquedasdunas.com.br' target='_blank'>Saiba mais</a>"),
+    L.marker([-6.1553, -35.1287], {icon: icons.natureza}).bindPopup("<b>Maior Cajueiro do Mundo</b><br>O maior cajueiro do planeta.<br><a href='https://cajueirogigante.com.br' target='_blank'>Saiba mais</a>"),
+    L.marker([-6.1644, -35.1033], {icon: icons.natureza}).bindPopup("<b>Praia de Pirangi</b><br>Praia tranquila para famílias.<br><a href='https://praiapirangi.com.br' target='_blank'>Saiba mais</a>"),
+    L.marker([-5.9887, -35.2705], {icon: icons.natureza}).bindPopup("<b>Dunas de Genipabu</b><br>Passeios de buggy e dromedários.<br><a href='https://dunasgenipabu.com.br' target='_blank'>Saiba mais</a>")
 ]);
 
 // Adicionando as camadas ao mapa
@@ -121,6 +128,7 @@ if ("geolocation" in navigator) {
 } else {
     alert("Geolocalização não disponível.");
 }
+
 
     </script>
 </body>
